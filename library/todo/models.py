@@ -27,7 +27,8 @@ class ProjectsTodo(models.Model):
         (STATUS_CLOSE, 'Закрыто'),
     )
 
-    project = models.ForeignKey(Projects, on_delete=models.CASCADE, verbose_name='Проект')
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE, verbose_name='Проект',
+                                related_name='todos', related_query_name='todo')
     description = models.TextField(blank=False, verbose_name='Описание')
     user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='Создатель')
     status = models.IntegerField(default=STATUS_NEW, choices=STATUSES, verbose_name='Статус')
